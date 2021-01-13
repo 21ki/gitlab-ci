@@ -41,7 +41,8 @@ package:
   script:
   -  pwd
   - ls /opt
-  - ls /opt/cache/.m2/repository
+  - ls
+  #- ls /opt/cache/.m2/repository
   #- mvn $MAVEN_CLI_OPTS $MAVEN_OPTS $JVM -Dmaven.test.skip=true package
   tags:
     - docker
