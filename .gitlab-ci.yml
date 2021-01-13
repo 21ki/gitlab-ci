@@ -21,9 +21,15 @@ variables:
 #services:
 #  - docker:dind
 
-#cache:
-#  paths:
-#    - /opt/.m2/
+cache:
+  paths:
+    - /opt/.m2/
+
+before_script:
+  - rm -rf /opt/.m2/repository || true
+  - tar -xzf .gitlab-cache.tar.gz -C / || true
+after_script:
+  - tar -czf .gitlab-cache.tar.gz /usr/local/cargo/registry || true
 
 
 #定义流程
@@ -43,6 +49,7 @@ package:
   - ls /opt
   - ls
   - ls /opt/.m2/repository/org/xmlunit/xmlunit-core/2.7.0/xmlunit-core-2.7.0.jar
+  - cat /etc/*release*
   #- ls /opt/cache/.m2/repository
   #- mvn $MAVEN_CLI_OPTS $MAVEN_OPTS $JVM -Dmaven.test.skip=true install
   - mvn $MAVEN_CLI_OPTS $JVM -Dmaven.test.skip=true install
