@@ -2,7 +2,7 @@ image: harbor.mvmyun.com/library/alpine:latest
 variables:
   MAVEN_CLI_OPTS: "-gs /opt/settings.xml --batch-mode"
   MAVEN_OPTS: "-Dmaven.repo.local=/opt/.m2/repository"
-  JVM: ""
+  JVM: "-Xmx2g -Xms2g"
   #发版dev测试环境
   K8S_ENVIRONMENT: dev
   #发版应用
@@ -23,7 +23,7 @@ variables:
 
 cache:
   paths:
-    - .m2/
+    - opt/.m2/
 
 
 #定义流程
