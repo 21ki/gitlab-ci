@@ -69,7 +69,7 @@
                         </auth>
                     </from>
                     <to>
-                        <image>harbor.mvmyun.com/library/healthz</image>
+                        <image>harbor.mvmyun.com/mvmyun/healthz</image>
                         <auth>
                             <username>admin</username>
                             <password>Harbor12345</password>
