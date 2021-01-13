@@ -21,9 +21,9 @@ variables:
 #services:
 #  - docker:dind
 
-cache:
-  paths:
-    - /opt/.m2/
+#cache:
+#  paths:
+#    - /opt/.m2/
 
 
 #定义流程
@@ -44,6 +44,7 @@ package:
   - ls
   - ls /opt/.m2/repository/org/xmlunit/xmlunit-core/2.7.0/xmlunit-core-2.7.0.jar
   #- ls /opt/cache/.m2/repository
-  - mvn $MAVEN_CLI_OPTS $MAVEN_OPTS $JVM -Dmaven.test.skip=true install
+  #- mvn $MAVEN_CLI_OPTS $MAVEN_OPTS $JVM -Dmaven.test.skip=true install
+  - mvn $MAVEN_CLI_OPTS $JVM -Dmaven.test.skip=true install
   tags:
     - docker
