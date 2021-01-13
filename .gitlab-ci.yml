@@ -2,7 +2,7 @@ image: harbor.mvmyun.com/library/alpine:latest
 variables:
   MAVEN_CLI_OPTS: "-gs /opt/settings.xml --batch-mode"
   MAVEN_OPTS: "-Dmaven.repo.local=/opt/.m2/repository"
-  JVM: "-Xmx1024m -Xms1024m"
+  JVM: " "
   #发版dev测试环境
   K8S_ENVIRONMENT: dev
   #发版应用
@@ -34,7 +34,7 @@ before_script:
   - echo "开始前脚本"
   
 package:
-  image: harbor.mvmyun.com/library/maven:3.6.2-jdk-14
+  image: harbor.mvmyun.com/library/maven:3.6.2-jdk-11
   stage: package
   before_script:
     - curl https://gitlab.mvmyun.com/devops/gitlabci-templates/raw/master/mvn/settings.xml -o /opt/settings.xml
