@@ -15,6 +15,6 @@ public class demo {
     @ResponseBody
     @RequestMapping("healthz")
     public  String healthz(){
-        return "success";
+        return "ok";
     }
 }
