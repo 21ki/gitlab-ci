@@ -18,8 +18,8 @@ variables:
   HOTEL_QUNAR_ORDER_TOKEN: 6c898fc00b8d62c9a970c1f79374f5
   REF_NAME: master
 
-services:
-  - docker:dind
+#services:
+#  - docker:dind
 
 cache:
   paths:
