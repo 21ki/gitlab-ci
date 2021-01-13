@@ -23,7 +23,7 @@ variables:
 
 cache:
   paths:
-    - opt/.m2/
+    - /opt/.m2/
 
 
 #定义流程
