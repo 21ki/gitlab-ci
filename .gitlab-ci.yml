@@ -21,9 +21,9 @@ variables:
 #services:
 #  - docker:dind
 
-cache:
-  paths:
-    - /opt/.m2/
+#cache:
+#  paths:
+#    - /opt/.m2/
 
 #before_script:
 #  - rm -rf /opt/.m2/repository || true
