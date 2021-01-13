@@ -25,11 +25,11 @@ cache:
   paths:
     - /opt/.m2/
 
-before_script:
-  - rm -rf /opt/.m2/repository || true
-  - tar -xzf .gitlab-cache.tar.gz -C / || true
-after_script:
-  - tar -czf .gitlab-cache.tar.gz /usr/local/cargo/registry || true
+#before_script:
+#  - rm -rf /opt/.m2/repository || true
+#  - tar -xzf .gitlab-cache.tar.gz -C / || true
+#after_script:
+#  - tar -czf .gitlab-cache.tar.gz /usr/local/cargo/registry || true
 
 
 #定义流程
