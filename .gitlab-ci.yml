@@ -36,7 +36,8 @@ variables:
 #定义流程
 stages:
   - package
-
+  - deploy_k8s
+  
 before_script:
   - echo "开始前脚本"
   
@@ -53,6 +54,21 @@ package:
   #- ls /opt/.m2/repository/org/xmlunit/xmlunit-core/2.7.0/xmlunit-core-2.7.0.jar
   - cat /etc/*release*
   - mvn $MAVEN_CLI_OPTS $JVM -Dmaven.test.skip=true clean install -P${K8S_ENVIRONMENT}
+  tags:
+    - docker
+  only:
+    - tags
+    - master
+
+deploy_k8s_job:
+  image: harbor.mvmyun.com/library/kubectl:1.19.4
+  stage: deploy_k8s
+  script:
+    - mkdir -p /etc/deploy
+    - echo $KUBECONFIG-DEV |base64 -d > $KUBECONFIG
+    #- sed -i "s/IMAGE_TAG/$CI_PIPELINE_ID/g" deployment.yaml
+    #- cat deployment.yaml
+    - kubectl get node
   tags:
     - docker
   only:
