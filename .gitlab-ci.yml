@@ -62,7 +62,8 @@ package:
     - master
 
 deploy_k8s_job:
-  image: registry.cn-beijing.aliyuncs.com/cheche/kubectl:latest
+  #image: registry.cn-beijing.aliyuncs.com/cheche/kubectl:v1.19.4
+  image: bitnami/kubectl:1.19.4
   stage: deploy_k8s
   before_script:
     - echo -e "\033[35m set kubeconfig \033[0m"
