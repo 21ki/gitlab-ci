@@ -36,11 +36,30 @@ variables:
 
 #定义流程
 stages:
-  #- package
+  - package
   - deploy_k8s
   
-#before_script:
-#  - echo "开始前脚本"
+before_script:
+  - echo "开始前脚本"
+  
+package:
+  image: harbor.mvmyun.com/library/maven:3.6.3-jdk-11
+  stage: package
+  before_script:
+    - curl https://gitlab.mvmyun.com/devops/gitlabci-templates/raw/master/mvn/settings.xml -o /opt/settings.xml
+  script:
+  - pwd
+  - ls /opt
+  - ls
+  - ls -a 
+  #- ls /opt/.m2/repository/org/xmlunit/xmlunit-core/2.7.0/xmlunit-core-2.7.0.jar
+  - cat /etc/*release*
+  - mvn $MAVEN_CLI_OPTS $JVM -Dmaven.test.skip=true clean install -P${K8S_ENVIRONMENT}
+  tags:
+    - docker
+  only:
+    - tags
+    - master
 
 deploy_k8s_job:
   image: registry.cn-beijing.aliyuncs.com/cheche/kubectl:latest
@@ -49,7 +68,7 @@ deploy_k8s_job:
     - echo -e "\033[35m set kubeconfig \033[0m"
     - mkdir -p $HOME/.kube
     - echo $KUBECONFIG_DEV |base64 -d > $HOME/.kube/config
-    - sudo chown $(id -u):$(id -g) $HOME/.kube/config
+    - chown $(id -u):$(id -g) $HOME/.kube/config
   script:
     - cat /etc/*release*
     - kubectl get node
