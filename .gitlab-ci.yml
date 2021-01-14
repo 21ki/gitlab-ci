@@ -50,7 +50,8 @@ deploy_k8s_job:
     - mkdir -p $HOME/.kube
     - echo $KUBECONFIG_DEV |base64 -d > $HOME/.kube/config
     - chown $(id -u):$(id -g) $HOME/.kube/config
-    - kubectl get node
+    - ls /opt/bitnami/kubectl/
+    #- kubectl get node
   tags:
     - docker
   only:
