@@ -43,14 +43,15 @@ stages:
 #  - echo "开始前脚本"
 
 deploy_k8s_job:
-  #image: registry.cn-hangzhou.aliyuncs.com/haoshuwei24/kubectl:1.16.6
-  image: harbor.mvmyun.com/library/kubectl:1.19.4
+  image: registry.cn-hangzhou.aliyuncs.com/haoshuwei24/kubectl:1.16.6
+  #image: harbor.mvmyun.com/library/kubectl:1.19.4
   stage: deploy_k8s
   script:
     #- mkdir -p $HOME/.kube
     #- echo $KUBECONFIG_DEV |base64 -d > $HOME/.kube/config
     #- chown $(id -u):$(id -g) $HOME/.kube/config
-    - ls /opt/bitnami/kubectl/
+    - ls /opt/
+    - cat /etc/*release*
     #- kubectl get node
   tags:
     - docker
