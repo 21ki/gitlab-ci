@@ -47,9 +47,9 @@ deploy_k8s_job:
   image: harbor.mvmyun.com/library/kubectl:1.19.4
   stage: deploy_k8s
   script:
-    - mkdir -p $HOME/.kube
-    - echo $KUBECONFIG_DEV |base64 -d > $HOME/.kube/config
-    - chown $(id -u):$(id -g) $HOME/.kube/config
+    #- mkdir -p $HOME/.kube
+    #- echo $KUBECONFIG_DEV |base64 -d > $HOME/.kube/config
+    #- chown $(id -u):$(id -g) $HOME/.kube/config
     - ls /opt/bitnami/kubectl/
     #- kubectl get node
   tags:
