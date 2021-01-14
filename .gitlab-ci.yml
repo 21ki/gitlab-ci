@@ -40,25 +40,6 @@ stages:
   
 before_script:
   - echo "开始前脚本"
-  
-package:
-  image: harbor.mvmyun.com/library/maven:3.6.3-jdk-11
-  stage: package
-  before_script:
-    - curl https://gitlab.mvmyun.com/devops/gitlabci-templates/raw/master/mvn/settings.xml -o /opt/settings.xml
-  script:
-  - pwd
-  - ls /opt
-  - ls
-  - ls -a 
-  #- ls /opt/.m2/repository/org/xmlunit/xmlunit-core/2.7.0/xmlunit-core-2.7.0.jar
-  - cat /etc/*release*
-  - mvn $MAVEN_CLI_OPTS $JVM -Dmaven.test.skip=true clean install -P${K8S_ENVIRONMENT}
-  tags:
-    - docker
-  only:
-    - tags
-    - master
 
 deploy_k8s_job:
   image: registry.cn-hangzhou.aliyuncs.com/haoshuwei24/kubectl:1.16.6
