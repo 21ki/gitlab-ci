@@ -39,8 +39,8 @@ stages:
   #- package
   - deploy_k8s
   
-before_script:
-  - echo "开始前脚本"
+#before_script:
+#  - echo "开始前脚本"
 
 deploy_k8s_job:
   #image: registry.cn-hangzhou.aliyuncs.com/haoshuwei24/kubectl:1.16.6
