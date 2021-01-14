@@ -1,12 +1,12 @@
 image: harbor.mvmyun.com/library/alpine:latest
 variables:
   MAVEN_CLI_OPTS: "-gs /opt/settings.xml --batch-mode"
-  MAVEN_OPTS: "-Dmaven.repo.local=/opt/.m2/repository"
+  #MAVEN_OPTS: "-Dmaven.repo.local=/opt/.m2/repository"
   JVM: " "
   #发版dev测试环境
   K8S_ENVIRONMENT: dev
   #发版应用
-  APPLICATION: hotel-qunar-order
+  APPLICATION: spring-hello-world
   #镜像仓库用户
   CONTAINER_REPO_USERNAME: ${HARBOR_REPO_USERNAME}
   #镜像仓库密码
@@ -45,13 +45,14 @@ package:
   before_script:
     - curl https://gitlab.mvmyun.com/devops/gitlabci-templates/raw/master/mvn/settings.xml -o /opt/settings.xml
   script:
-  -  pwd
+  - pwd
   - ls /opt
   - ls
   #- ls /opt/.m2/repository/org/xmlunit/xmlunit-core/2.7.0/xmlunit-core-2.7.0.jar
   - cat /etc/*release*
-  #- ls /opt/cache/.m2/repository
-  #- mvn $MAVEN_CLI_OPTS $MAVEN_OPTS $JVM -Dmaven.test.skip=true install
-  - mvn $MAVEN_CLI_OPTS $JVM -Dmaven.test.skip=true install
+  - mvn $MAVEN_CLI_OPTS $JVM -Dmaven.test.skip=true clean install -P${K8S_ENVIRONMENT}
   tags:
     - docker
+  only:
+    - tags
+    - master
