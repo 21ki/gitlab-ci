@@ -62,17 +62,16 @@ package:
     - master
 
 deploy_k8s_job:
-  #image: registry.cn-beijing.aliyuncs.com/cheche/kubectl:v1.19.4
-  image: bitnami/kubectl:1.19.4
+  image: registry.cn-beijing.aliyuncs.com/cheche/kubectl:v1.19.3
   stage: deploy_k8s
   before_script:
-    - echo -e "\033[35m set kubeconfig \033[0m"
+    - echo -e "\033[35m 设置kube配置文件 \033[0m"
     - mkdir -p $HOME/.kube
     - echo $KUBECONFIG_DEV |base64 -d > $HOME/.kube/config
     - chown $(id -u):$(id -g) $HOME/.kube/config
   script:
     - cat /etc/*release*
-    - kubectl get node
+    - kubectl get pod -n hotel
   tags:
     - docker
   only:
