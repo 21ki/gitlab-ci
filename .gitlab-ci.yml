@@ -28,6 +28,7 @@ variables:
 #before_script:
 #  - rm -rf /opt/.m2/repository || true
 #  - tar -xzf .gitlab-cache.tar.gz -C / || true
+#  - source .${CI_COMMIT_REF_NAME}.env
 #after_script:
 #  - tar -czf .gitlab-cache.tar.gz /usr/local/cargo/registry || true
 
