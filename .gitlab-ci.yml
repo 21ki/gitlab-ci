@@ -60,6 +60,7 @@ package:
   #- ls /opt/.m2/repository/org/xmlunit/xmlunit-core/2.7.0/xmlunit-core-2.7.0.jar
   - cat /etc/*release*
   #- mvn $MAVEN_CLI_OPTS $JVM -Dmaven.test.skip=true clean install -P${K8S_ENVIRONMENT}
+  - mvn -version
   tags:
     - jks
   only:
