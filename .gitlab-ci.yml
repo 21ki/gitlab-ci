@@ -67,7 +67,6 @@ package:
     - tags
     - master
 
-
 deploy_k8s_job:
   image: harbor.mvmyun.com/library/kubectl:1.20.5
   stage: deploy_k8s
