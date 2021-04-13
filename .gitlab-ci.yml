@@ -41,7 +41,7 @@ stages:
 
 
 deploy_k8s_job:
-  image: harbor.mvmyun.com/library/kubectl:1.19.4
+  image: registry.cn-hangzhou.aliyuncs.com/haoshuwei24/kubectl:1.16.6
   stage: deploy_k8s
   tags:
     - docker
