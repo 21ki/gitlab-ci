@@ -41,11 +41,12 @@ stages:
 
 
 deploy_k8s_job:
-  image: harbor.mvmyun.com/library/kubectl:1.19.4
+  image: harbor.mvmyun.com/library/kubectl:1.16.4
   stage: deploy_k8s
   tags:
     - docker
-  script:
+  before_script:
     - mkdir -p /etc/deploy
-    - echo $KUBECONFIG_DEV_BIN |base64 -d > $KUBECONFIG
+    - echo $KUBECONFIG_DEV_BIN |base64 -d > $KUBECONFIG   
+  script:
     - kubectl get node  
