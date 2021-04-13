@@ -66,3 +66,14 @@ package:
   only:
     - tags
     - master
+
+deploy_k8s_job:
+  image: harbor.mvmyun.com/library/kubectl:1.19.4
+  stage: deploy_k8s
+  tags:
+    - docker
+  before_script:
+    - mkdir -p /etc/deploy
+    - echo $KUBECONFIG_DEV_BIN |base64 -d > $KUBECONFIG
+  script:
+    - kubectl get node
