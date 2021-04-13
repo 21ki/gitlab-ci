@@ -45,8 +45,7 @@ deploy_k8s_job:
   stage: deploy_k8s
   tags:
     - docker
-  before_script:
-    - mkdir -p /etc/deploy
-    - echo $KUBECONFIG_DEV_BIN |base64 -d > $KUBECONFIG
   script:
-    - kubectl get node
+    - mkdir -p /etc/deploy
+    - echo $kube_config |base64 -d > $KUBECONFIG
+    - kubectl get node  
