@@ -7,7 +7,7 @@ variables:
   K8S_ENVIRONMENT: dev
   #发版应用
   APPLICATION: spring-hello-world
-  #KUBECONFIG: /etc/deploy/config
+  KUBECONFIG: /etc/deploy/config
   #镜像仓库用户
   CONTAINER_REPO_USERNAME: ${HARBOR_REPO_USERNAME}
   #镜像仓库密码
@@ -47,5 +47,5 @@ deploy_k8s_job:
     - docker
   script:
     - mkdir -p /etc/deploy
-    - echo $kube_config |base64 -d > $KUBECONFIG
+    - echo $KUBECONFIG_DEV_BIN |base64 -d > $KUBECONFIG
     - kubectl get node  
