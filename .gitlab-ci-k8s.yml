@@ -5,6 +5,7 @@ variables:
   JVM: " "
   #发版dev测试环境
   K8S_ENVIRONMENT: dev
+  KUBECONFIG_DEV_BIN: ${KUBECONFIG_DEV_BIN}
   #发版应用
   APPLICATION: spring-hello-world
   KUBECONFIG: /etc/deploy/config
@@ -36,42 +37,16 @@ variables:
 
 #定义流程
 stages:
-  - package
   - deploy_k8s
   
 before_script:
   - echo "开始前脚本"
-  
-package:
-  #image: harbor.mvmyun.com/library/maven:3.6.3-jdk-11
-  stage: package
-  before_script:
-    - curl https://gitlab.mvmyun.com/devops/gitlabci-templates/raw/master/mvn/settings.xml -o /opt/settings.xml
-    - export JAVA_HOME=/opt/tools/sdkman/candidates/java/11.0.9.fx-zulu
-    #- export JRE_HOME=$JAVA_HOME/jre
-    - export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
-    #- export CLASSPATH=:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib/dt.jar
-    #- export JAVA_HOME JRE_HOME PATH CLASSPAT
-  script:
-  - pwd
-  - ls /opt
-  - ls
-  - ls -a 
-  #- ls /opt/.m2/repository/org/xmlunit/xmlunit-core/2.7.0/xmlunit-core-2.7.0.jar
-  - cat /etc/*release*
-  #- mvn $MAVEN_CLI_OPTS $JVM -Dmaven.test.skip=true clean install -P${K8S_ENVIRONMENT}
-  - mvn -version
-  tags:
-    - jks
-  only:
-    - tags
-    - master
 
 deploy_k8s_job:
   image: harbor.mvmyun.com/library/kubectl:1.20.5
   stage: deploy_k8s
   tags:
-    - docker
+    - k8s
   before_script:
     - mkdir -p /etc/deploy
     - echo $KUBECONFIG_DEV_BIN |base64 -d > $KUBECONFIG   
